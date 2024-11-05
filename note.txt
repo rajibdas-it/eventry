@@ -1,0 +1,4 @@
+1. create database connection function in services folder.
+2. create models folder and write individual data model.
+3. same page ei schema theke model create kore seta export korte hobe.
+4. create db folder and create quries.js where we will write db quries related fucntion
