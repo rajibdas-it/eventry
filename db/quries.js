@@ -1,8 +1,11 @@
-const { eventModel } = require("@/models/events.model");
+// import { events, eventsModel } from "@/models/events.model"
 
-async function getAllEvents() {
-    const allEvents = await eventModel.find()
-    return allEvents
-}
 
-export { getAllEvents }
+// async function getAllEvents() {
+
+//     const allEvents = await eventsModel.find()
+//     console.log(allEvents);
+
+// }
+
+// export { getAllEvents }
