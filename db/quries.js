@@ -1,5 +1,5 @@
 import { events } from "@/models/events.model";
-import { replaceMongoIdInArray } from "@/utils/data-utils";
+import { replaceMongoIdInArray, replaceMongoIdInObject } from "@/utils/data-utils";
 
 
 
@@ -10,4 +10,10 @@ async function getAllEvents() {
 
 }
 
-export { getAllEvents }
+async function getEventDetails(eventId) {
+    const event = await events.findById(eventId).lean()
+    return replaceMongoIdInObject(event)
+
+}
+
+export { getAllEvents, getEventDetails }
