@@ -14,7 +14,7 @@ const EventDetailPage = async ({ params }) => {
             <section className="container">
                 <div className="grid grid-cols-5 gap-12 my-12">
                     <EventDetails event={event} />
-                    <EventVenue />
+                    <EventVenue location={event?.location} />
                 </div>
             </section>
         </>

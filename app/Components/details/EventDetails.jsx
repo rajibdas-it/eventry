@@ -10,11 +10,8 @@ const EventDetails = ({ event }) => {
           <p className="">{event?.details}</p>
 
           <ul className="">
-            <li>🎉 Free Tshirt</li>
-            <li>🕹️ Networking</li>
-            <li>🎯 Networking</li>
-            <li>📌 Free Foods</li>
-            <li>🚀 Free Wifi</li>
+            {event?.swags?.length > 0 &&
+              event?.swags.map((swag, index) => <li key={index}>{swag}</li>)}
           </ul>
         </div>
       </div>
