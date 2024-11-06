@@ -1,3 +1,4 @@
+import { registerUser } from "@/app/actions";
 import React from "react";
 
 const RegistrationForm = () => {
