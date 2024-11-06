@@ -1,5 +1,6 @@
 'use server'
-import { createUser, findUserByCredentials } from "@/db/quries"
+import { createUser, findUserByCredentials, updateInterest } from "@/db/quries"
+import { revalidatePath } from "next/cache"
 import { redirect } from "next/navigation"
 
 
@@ -29,5 +30,15 @@ async function signIn(formData) {
 
 }
 
+async function addInterestedEvent(eventId, authId) {
+    try {
+        await updateInterest(eventId, authId)
+    } catch (error) {
+        throw error
+    }
+    revalidatePath('/')
 
-export { registerUser, signIn }
+}
+
+
+export { registerUser, signIn, addInterestedEvent }
