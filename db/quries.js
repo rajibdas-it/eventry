@@ -22,19 +22,17 @@ async function createUser(user) {
 
 }
 
-async function loginUser(userCredintial) {
+async function findUserByCredentials(userCredential) {
     try {
-        const { email, password } = userCredintial
-        console.log(email);
+        const { email, password } = userCredential
+
         const isExistingUser = await users.findOne({ email: email })
         if (!isExistingUser) {
-            console.log("No user found with is email");
-            return null
+            throw new Error("No User found with this email")
         }
 
         if (isExistingUser?.password !== password) {
-            console.log("password not matched");
-            return null
+            throw new Error("No User found with this email")
         }
 
         return isExistingUser
@@ -45,4 +43,4 @@ async function loginUser(userCredintial) {
     }
 }
 
-export { getAllEvents, getEventDetails, createUser, loginUser }
+export { getAllEvents, getEventDetails, createUser, findUserByCredentials }
