@@ -22,25 +22,33 @@ async function createUser(user) {
 
 }
 
-async function findUserByCredentials(userCredential) {
-    try {
-        const { email, password } = userCredential
+// async function findUserByCredentials(userCredential) {
+//     try {
+//         const { email, password } = userCredential
 
-        const isExistingUser = await users.findOne({ email: email })
-        if (!isExistingUser) {
-            throw new Error("No User found with this email")
-        }
+//         const isExistingUser = await users.findOne({ email: email })
+//         if (!isExistingUser) {
+//             throw new Error("No User found with this email")
+//         }
 
-        if (isExistingUser?.password !== password) {
-            throw new Error("No User found with this email")
-        }
+//         if (isExistingUser?.password !== password) {
+//             throw new Error("No User found with this email")
+//         }
 
-        return isExistingUser
+//         return isExistingUser
 
 
-    } catch (error) {
-        console.log(error);
+//     } catch (error) {
+//         console.log(error);
+//     }
+// }
+
+async function findUserByCredentials(credentials) {
+    const user = await users.findOne(credentials).lean();
+    if (user) {
+        return replaceMongoIdInObject(user);
     }
+    return null;
 }
 
 export { getAllEvents, getEventDetails, createUser, findUserByCredentials }

@@ -14,13 +14,14 @@ async function registerUser(formData) {
 
 async function signIn(formData) {
     // const userCredential = Object.fromEntries(formData)
-    const userCredential = {}
-    userCredential.email = formData.get('email')
-    userCredential.password = formData.get('password')
-
-    const found = await findUserByCredentials(userCredential)
-    if (found) {
-        redirect("/")
+    try {
+        const credential = {};
+        credential.email = formData.get("email");
+        credential.password = formData.get("password");
+        const found = await findUserByCredentials(credential);
+        return found;
+    } catch (error) {
+        throw error;
     }
 
 }

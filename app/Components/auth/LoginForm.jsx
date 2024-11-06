@@ -4,14 +4,14 @@ import React, { useState } from "react";
 
 const LoginForm = () => {
   const [error, setError] = useState("");
-  console.log(error);
 
   async function onSubmit(e) {
     e.preventDefault();
     try {
-      await signIn({ m });
+      const formData = new FormData(e.currentTarget);
+      await signIn(formData);
     } catch (error) {
-      setError(err.message);
+      setError(error.message);
     }
   }
   return (
