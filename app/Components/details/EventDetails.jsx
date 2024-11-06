@@ -10,7 +10,7 @@ const EventDetails = ({ event }) => {
           <p className="">{event?.details}</p>
 
           <ul className="">
-            {event?.swags?.length > 0 &&
+            {event?.swags &&
               event?.swags.map((swag, index) => <li key={index}>{swag}</li>)}
           </ul>
         </div>
