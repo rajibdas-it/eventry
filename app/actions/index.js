@@ -19,7 +19,11 @@ async function signIn(formData) {
         credential.email = formData.get("email");
         credential.password = formData.get("password");
         const found = await findUserByCredentials(credential);
-        return found;
+        if (found) {
+            redirect("/")
+        } else {
+            throw new Error("wrong user information")
+        }
     } catch (error) {
         throw error;
     }
