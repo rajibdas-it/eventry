@@ -32,6 +32,7 @@ async function signIn(formData) {
 
 async function addInterestedEvent(eventId, authId) {
     try {
+        console.log(eventId);
         await updateInterest(eventId, authId)
     } catch (error) {
         throw error

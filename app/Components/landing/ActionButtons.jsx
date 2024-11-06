@@ -14,10 +14,20 @@ const ActionButtons = ({ eventId, interestedUserIds, formDetails }) => {
   const [interested, setInterested] = useState(isInterested);
   const [isPending, startTransition] = useTransition();
 
+  console.log("action button", auth);
+
   async function toggleInterest() {
     if (auth) {
       await addInterestedEvent(eventId, auth.id);
       setInterested(!interested);
+    } else {
+      router.push("/login");
+    }
+  }
+
+  async function markGoing() {
+    if (auth) {
+      router.push("/payment");
     } else {
       router.push("/login");
     }
@@ -36,12 +46,12 @@ const ActionButtons = ({ eventId, interestedUserIds, formDetails }) => {
       >
         Interested
       </button>
-      <Link
-        href="/payment"
+      <button
+        onClick={markGoing}
         className="text-center w-full bg-[#464849] py-2 px-2 rounded-md border border-[#5f5f5f]/50 shadow-sm cursor-pointer hover:bg-[#3C3D3D] transition-colors active:translate-y-1"
       >
         Going
-      </Link>
+      </button>
     </div>
   );
 };

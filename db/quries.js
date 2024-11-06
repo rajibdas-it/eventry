@@ -52,7 +52,9 @@ async function findUserByCredentials(credentials) {
 }
 
 async function updateInterest(eventId, authId) {
+
     const event = await events.findById(eventId)
+    // console.log("queries", eventId);
     if (event) {
         const foundUsers = event.interested_ids.find((id) => id.toString() === authId)
         if (foundUsers) {
