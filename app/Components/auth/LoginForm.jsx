@@ -1,8 +1,9 @@
+import { signIn } from "@/app/actions";
 import React from "react";
 
 const LoginForm = () => {
   return (
-    <form className="login-form">
+    <form className="login-form" action={signIn}>
       <div>
         <label for="email">Email Address</label>
         <input type="email" name="email" id="email" />
