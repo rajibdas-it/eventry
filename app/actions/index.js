@@ -2,6 +2,7 @@
 import { createUser, findUserByCredentials } from "@/db/quries"
 import { redirect } from "next/navigation"
 
+
 //server action er jonno likhte hobe
 
 async function registerUser(formData) {
@@ -14,16 +15,14 @@ async function registerUser(formData) {
 
 async function signIn(formData) {
     // const userCredential = Object.fromEntries(formData)
+
     try {
         const credential = {};
         credential.email = formData.get("email");
         credential.password = formData.get("password");
         const found = await findUserByCredentials(credential);
-        if (found) {
-            redirect("/")
-        } else {
-            throw new Error("wrong user information")
-        }
+        return found
+
     } catch (error) {
         throw error;
     }

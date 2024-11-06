@@ -1,11 +1,15 @@
+"use client";
 import useAuth from "@/app/hooks/useAuth";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import React from "react";
 
 const SignInOut = () => {
   const { auth, setAuth } = useAuth();
+  const router = useRouter();
   const logout = () => {
     setAuth(null);
+    router.push("/login");
   };
   return (
     <div>
