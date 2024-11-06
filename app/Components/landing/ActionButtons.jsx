@@ -14,7 +14,7 @@ const ActionButtons = ({ eventId, interestedUserIds, formDetails }) => {
   const [interested, setInterested] = useState(isInterested);
   const [isPending, startTransition] = useTransition();
 
-  console.log("action button", auth);
+  // console.log("action button", auth);
 
   async function toggleInterest() {
     if (auth) {

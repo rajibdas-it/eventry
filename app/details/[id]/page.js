@@ -7,7 +7,7 @@ import React from 'react';
 const EventDetailPage = async ({ params }) => {
     const { id } = await params
     const event = await getEventDetails(id)
-    console.log(event);
+    // console.log(event);
     return (
         <>
             <HeroSection event={event} />
