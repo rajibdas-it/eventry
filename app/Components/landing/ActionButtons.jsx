@@ -1,16 +1,35 @@
 "use client";
+import { addInterestedEvent } from "@/app/actions";
 import useAuth from "@/app/hooks/useAuth";
 import Link from "next/link";
-import React, { useState } from "react";
+import { useRouter } from "next/navigation";
+
+import React, { useState, useTransition } from "react";
 
 const ActionButtons = ({ eventId, interestedUserIds, formDetails }) => {
+  const router = useRouter();
   const { auth } = useAuth();
 
-  const isInterested = interestedUserIds.find((id) => id === auth?.id);
+  const isInterested = interestedUserIds?.find((id) => id === auth?.id);
   const [interested, setInterested] = useState(isInterested);
+  const [isPending, startTransition] = useTransition();
+
+  async function toggleInterest() {
+    if (auth) {
+      await addInterestedEvent(eventId, auth.id);
+      setInterested(!interested);
+    } else {
+      router.push("/login");
+    }
+  }
   return (
     <div className={`w-full flex gap-4 mt-4 ${formDetails && "flex-1"}`}>
       <button
+        onClick={() =>
+          startTransition(() => {
+            toggleInterest();
+          })
+        }
         className={`w-full ${
           interested && "bg-indigo-600 hover:bg-indigo-800"
         }`}
