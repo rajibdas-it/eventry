@@ -2,3 +2,27 @@
 2. create models folder and write individual data model.
 3. same page ei schema theke model create kore seta export korte hobe.
 4. create db folder and create quries.js where we will write db quries related fucntion
+5. Image Blur korar jonno Image tag e nicher property gula add korte hoy.
+        placeholder="blur"
+        blurDataURL={base64}
+
+6. Suspense ke data jei component fetch hoy sei component ke wrap kore dite hobe.
+        <Suspense fallback={<Loading />}>
+            <EventList > ei component er vitore data fetch kora hoise.
+        </Suspense>
+
+7. Search implement korar jonno useSearchParams use kore  
+        const searchParams = useSearchParams();
+          const pathName = usePathname();
+          const { replace } = useRouter();
+        
+          const handleSearch = (term) => {
+            const params = new URLSearchParams(searchParams);
+            if (term) {
+              params.set("query", term);
+            } else {
+              params.delete("query");
+            }
+        
+            replace(`${pathName}?${params.toString()}`);
+        };
