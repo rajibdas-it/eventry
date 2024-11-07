@@ -3,9 +3,14 @@ import { users } from "@/models/users.model";
 import { replaceMongoIdInArray, replaceMongoIdInObject } from "@/utils/data-utils";
 import mongoose from "mongoose";
 
-async function getAllEvents() {
-
-    const allEvents = await events.find().lean();
+async function getAllEvents(query) {
+    let allEvents = []
+    if (query) {
+        const regex = new RegExp(query, "i")
+        allEvents = await events.find({ name: { $regex: regex } }).lean();
+    } else {
+        allEvents = await events.find().lean();
+    }
     return replaceMongoIdInArray(allEvents)
 
 }
